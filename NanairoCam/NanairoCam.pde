@@ -4,7 +4,8 @@ int vx, vz, px, pz;
 PImage bg, sun, bgg, bgd, bgk, bgn, bgz, bgak, bgao, bgh, bgm;
 PShape s, g, d, k, n, z, ak, ao, h, m, ppn;
 boolean fps;
-boolean [] keysPressed = new boolean[8];
+boolean [] keysPressed = new boolean[6];
+
 void setup()
 {
   size(750,500,P3D);
@@ -33,6 +34,7 @@ void setup()
   sz=0.;
   ppn = loadShape("GalagaShip.obj");
   ppn.setTexture(loadImage("Galaga.png"));
+  
 }
 
 
@@ -41,18 +43,16 @@ void draw()
   background(bg);
   drawPlanets();
   if(!fps){
+    textSize(20);
+  text("Nanairo",50,10);
   drawShip();
   }
   movePosNave();
     
   if(!fps){
-  textSize(20);
-  camera(width/2, height/2, 800, width/2.0, height/2.0, 0, 0.0, 1.0, 0.0); 
-  text("Nanairo",50,10);
-  
+    camera(); 
   }else{
-    //println("NaveX: " + ppn.x + " NaveY: " + ppn.y + " NaveZ: "+ ppn.z);
-      camera(-sx, sy, sz,  width ,sy, sz, 0.0, 1.0, 0.0);
+    camera(-sx, sy, sz,  width ,sy, sz, 0.0, 1.0, 0.0);
   }
 }
 
@@ -85,7 +85,6 @@ void drawPlanets(){
   shape(g);
   translate(0,-30,0);
   rotateX(radians(45));
-  text("Genshi",0,0);
   popMatrix();
   angG=(angG+0.5)%360;
   
@@ -96,7 +95,6 @@ void drawPlanets(){
   shape(d);
   translate(0,-35,0);
   rotateX(radians(45));
-  text("Daichi",0,0);
   popMatrix();
   angD=(angD+0.45)%360;
   
@@ -107,7 +105,6 @@ void drawPlanets(){
   shape(k);
   translate(0,-40,0);
   rotateX(radians(45));
-  text("Kollin",0,0);
   popMatrix();
   angK=(angK+0.3)%360;
   
@@ -118,7 +115,6 @@ void drawPlanets(){
   shape(n);
   translate(0,-42,0);
   rotateX(radians(45));
-  text("Nessa",0,0);
   popMatrix();
   angN=(angN+0.35)%360;
   
@@ -129,20 +125,17 @@ void drawPlanets(){
   shape(z);
   translate(0,-45,0);
   rotateX(radians(45));
-  text("Ziba",0,0);
   rotateZ(radians(angA));
   rotateX(radians(angA));
   rotateY(radians(angA));
   translate(width*0.04,25,0);
   shape(ak);
   translate(0,-19,0);
-  //rotateX(radians(45));
-  text("Akaboshi",0,0);
+  rotateX(radians(45));
   translate(-2*width*0.04,19,0);
   shape(ao);
   translate(0,-19,0);
-  //rotateX(radians(45));
-  text("Aoboshi",0,0);
+  rotateX(radians(45));
   popMatrix();
   angZ=(angZ+0.15)%360;
   angA=(angA+0.5)%360;
@@ -156,15 +149,13 @@ void drawPlanets(){
   shape(m);
   translate(0,-25,0);
   rotateX(radians(45));
-  text("Meido",0,0);
   rotateY(radians(angH));
   rotateX(radians(angH));
   rotateZ(radians(angH));
   translate(width*0.04,24,0);
   shape(h);
   translate(0,-19,0);
-  //rotateX(radians(45));
-  text("Himuro",0,0);
+  rotateX(radians(45));
   popMatrix();
   angM=(angM+0.2)%360;
   angH=(angH+0.3)%360;
@@ -247,20 +238,11 @@ void initPlanets(){
 }
 
 void mouseClicked() {
-  /*if (mode == 0) {
-      mode=1;
-      perspective();
-    } else {
-      mode = 0;
-      ortho();
-    }*/
+  if(mouseButton == LEFT)fps = !fps;
 }
 
 void keyPressed(){
    setDireccion(key,true);
-   if(key == ENTER){
-     fps = !fps;
-   }
 }
 
 void keyReleased(){
@@ -271,11 +253,11 @@ void setDireccion(int tecla, boolean change){
   switch(tecla){
     case 'W':
     case 'w':
-      keysPressed[0] = change;
+      keysPressed[4] = change;
       break;
     case 'S':
     case 's':
-      keysPressed[1] = change;
+      keysPressed[5] = change;
       break;
     case 'A':
     case 'a':
@@ -287,21 +269,21 @@ void setDireccion(int tecla, boolean change){
       break;
     case 'Q':
     case 'q':
-      keysPressed[4] = change;
+      keysPressed[0] = change;
       break;
     case 'E':
     case 'e':
-      keysPressed[5] = change;
+      keysPressed[1] = change;
       break;
   }
 }
 
 void movePosNave(){
-  if(keysPressed[0]){ //Tecla w
-    setShipPos(sx, sy-5,sz );
+  if(keysPressed[0]){ //Tecla q
+    if(fps) setShipPos(sx, sy-5,sz );
    }
-  if(keysPressed[1]){ //Tecla s
-    setShipPos(sx, sy+5,sz );
+  if(keysPressed[1]){ //Tecla 
+    if(fps) setShipPos(sx, sy+5,sz );
   }
   if(keysPressed[2]){ //Tecla a
     if(fps){
@@ -317,11 +299,19 @@ void movePosNave(){
       setShipPos(sx+5, sy,sz );
     }
   }
-  if(keysPressed[4]){ //Tecla r
-    setShipPos(sx+5, sy,sz);
+  if(keysPressed[4]){ //Tecla w
+    if(fps){
+      setShipPos(sx-5, sy,sz );
+    }else{
+      setShipPos(sx, sy-5,sz );
+    }
   }
-  if(keysPressed[5]){ //Tecla z
-    setShipPos(sx-5, sy,sz);
+  if(keysPressed[5]){ //Tecla s
+        if(fps){
+      setShipPos(sx+5, sy,sz );
+    }else{
+      setShipPos(sx, sy+5,sz );
+    }
   }
 }
 
