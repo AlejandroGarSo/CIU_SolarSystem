@@ -1,6 +1,8 @@
 # CIU_SolarSystem
 Por Alejandro García Sosa
 
+# Parte 1:
+
 ## Descripción del proyecto:
 En este proyecto para la asignatura **Creando Interfaces de Usuario** (en adelante **CIU**) se ha modelado un sistema estelar, el cual, en este caso, posee 6 planetas y 3 lunas. El sistema elegido para modelar es el sistema estelar Nanairo, procedente del videojuego **Spectrobes**.
 
@@ -18,7 +20,23 @@ Se ha decidido mantener una vista en ángulo de 45º, colocando el sol en el cua
 ## Resultado en GIF:
 ![Screenshot](NanairoGif.gif)
 
+# Parte 2:
+
+## Descripción del proyecto:
+En esta segunda parte del proyecto, se ha añadido una nave, la cual se puede desplazar utilizando las teclas W,A,S,D,Q y E.
+
+
+## Diseño interno:
+El código generador de los planetas no se ha modificado, pero se ha modularizado, añadiendo el método **drawPlanets()**, el cual contiene la gestión del dibujo del sistema, así como la gestión de órbitas. También se ha añadido una PShape, la cual tiene un modelo y una textura propios, que representa a la nave.
+
+## Diseño de la interfaz:
+Para simplificar el cambio a primera persona, se ha eliminado el ángulo de la primera parte. También se ha eliminado el nombre de los planetas, a fin de simplificar la interfaz. Cuando se está con la cámara de la nave. Para evitar que el modelo de la nave aparezca en la cámara de la nave, se desactiva el modelo cuando se pulsa el botón del ratón para cmabiar de cámara, y se reactiva al volver a la vista general.
+
+## Resultado en GIF:
+![Screenshot](NanairoGifCam.gif)
+
 ## Bibliografía:
 - Diapositivas de la asignatura de CIU.
 - Guión de prácticas de la asignatura.
 - https://www.openprocessing.org/
+- Modelo de la nave: https://www.models-resource.com/
