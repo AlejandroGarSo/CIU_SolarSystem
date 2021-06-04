@@ -27,10 +27,26 @@ En esta segunda parte del proyecto, se ha añadido una nave, la cual se puede de
 
 
 ## Diseño interno:
-El código generador de los planetas no se ha modificado, pero se ha modularizado, añadiendo el método **drawPlanets()**, el cual contiene la gestión del dibujo del sistema, así como la gestión de órbitas. También se ha añadido una PShape, la cual tiene un modelo y una textura propios, que representa a la nave.
+El código generador de los planetas no se ha modificado, pero se ha modularizado, añadiendo el método **drawPlanets()**, el cual contiene la gestión del dibujo del sistema, así como la gestión de órbitas. También se ha añadido una PShape, la cual tiene un modelo y una textura propios, que representa a la nave. La nave tiene guardada su posición en tres variables de tipo float, que representan los tres ejes. 
 
 ## Diseño de la interfaz:
 Para simplificar el cambio a primera persona, se ha eliminado el ángulo de la primera parte. También se ha eliminado el nombre de los planetas, a fin de simplificar la interfaz. Cuando se está con la cámara de la nave. Para evitar que el modelo de la nave aparezca en la cámara de la nave, se desactiva el modelo cuando se pulsa el botón del ratón para cmabiar de cámara, y se reactiva al volver a la vista general.
+
+## Controles:
+
+### 2D:
+- W: Arriba
+- S: Abajo
+- A: Izquierda
+- D: Derecha
+
+### 3D:
+- W: Delante
+- S: Atrás
+- A: Izquierda
+- D: Derecha
+- Q: Arriba
+- E: Abajo
 
 ## Resultado en GIF:
 ![Screenshot](NanairoGifCam.gif)
